@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCrime Simulator — Practice AML/KYC analysis</title>
+  <meta name="description" content="A practical AML/KYC learning playground. Practice customer due diligence, transaction monitoring, risk scoring, and SAR drafting through realistic fictional scenarios." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========================================================
+       APP SHELL: sidebar + main content area
+       The sidebar becomes a slide-in drawer on mobile.
+       ========================================================= -->
+  <div class="app">
+
+    <!-- Mobile topbar (only visible on small screens) -->
+    <header class="topbar">
+      <button class="icon-btn" id="menuToggle" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="topbar-brand">
+        <span class="logo-mark">FC</span>
+        <span class="logo-text">FinCrime Simulator</span>
+      </div>
+      <div style="width:22px"></div>
+    </header>
+
+    <!-- Sidebar navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">
+          <div class="logo-mark">FC</div>
+          <div>
+            <div class="brand-name">FinCrime Simulator</div>
+            <div class="brand-sub">AML/KYC practice</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a class="nav-item active" data-section="landing">
+          <span class="nav-ico">●</span> Home
+        </a>
+        <a class="nav-item" data-section="dashboard">
+          <span class="nav-ico">▦</span> Dashboard
+        </a>
+        <div class="nav-label">Simulators</div>
+        <a class="nav-item" data-section="kyc">
+          <span class="nav-ico">◉</span> KYC Case Review
+        </a>
+        <a class="nav-item" data-section="tm">
+          <span class="nav-ico">⇄</span> Transaction Monitoring
+        </a>
+        <a class="nav-item" data-section="risk">
+          <span class="nav-ico">◈</span> Risk Scoring Engine
+        </a>
+        <a class="nav-item" data-section="sar">
+          <span class="nav-ico">✎</span> SAR/STR Notes
+        </a>
+        <div class="nav-label">Reference</div>
+        <a class="nav-item" data-section="redflags">
+          <span class="nav-ico">⚑</span> Red Flag Library
+        </a>
+        <a class="nav-item" data-section="sql">
+          <span class="nav-ico">⌘</span> SQL for AML
+        </a>
+        <a class="nav-item" data-section="about">
+          <span class="nav-ico">ⓘ</span> About
+        </a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="disclaimer-pill">Fictional data. Educational use only.</div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main" id="main">
+
+      <!-- ========== LANDING ========== -->
+      <section class="view active" id="view-landing">
+        <div class="hero">
+          <div class="hero-content">
+            <div class="eyebrow">AML / KYC training environment</div>
+            <h1>Practice financial crime compliance like an analyst, not a student.</h1>
+            <p class="lead">
+              FinCrime Simulator gives aspiring compliance professionals a realistic
+              playground for customer due diligence, transaction monitoring, risk
+              rating, red flag detection, and SAR drafting, using fictional cases
+              modelled on real analyst workflows.
+            </p>
+            <div class="hero-ctas">
+              <button class="btn primary" data-go="kyc">Start Simulation</button>
+              <button class="btn ghost" data-go="redflags">Explore Red Flags</button>
+              <button class="btn ghost" data-go="sql">Practice SQL</button>
+            </div>
+            <div class="hero-meta">
+              <span>6+ KYC cases</span>
+              <span>6+ TM alerts</span>
+              <span>40+ red flags</span>
+              <span>8 SQL challenges</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-head">
+              <span class="dot dot-red"></span>
+              <span class="mono">ALERT #A-2041</span>
+              <span class="pill pill-red">HIGH</span>
+            </div>
+            <div class="hero-row"><span>Customer</span><b>Meridian Trading FZE</b></div>
+            <div class="hero-row"><span>Trigger</span><b>Round-amount wires to HRJ</b></div>
+            <div class="hero-row"><span>Volume 30d</span><b>$ 1,240,000</b></div>
+            <div class="hero-row"><span>Expected</span><b>$ 200,000</b></div>
+            <div class="hero-row"><span>Typology</span><b>Possible TBML / layering</b></div>
+            <div class="hero-actions">
+              <span class="chip">Escalate</span>
+              <span class="chip chip-muted">Close</span>
+              <span class="chip chip-muted">Request info</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="features">
+          <h2>What you can practice</h2>
+          <div class="grid">
+            <div class="feat-card" data-go="kyc">
+              <div class="feat-ico">◉</div>
+              <h3>KYC / CDD Review</h3>
+              <p>Review fictional customer files and decide risk rating, missing docs, and next action.</p>
+            </div>
+            <div class="feat-card" data-go="tm">
+              <div class="feat-ico">⇄</div>
+              <h3>Transaction Monitoring</h3>
+              <p>Work real-shape alerts: structuring, mule flows, TBML, sanctions proximity.</p>
+            </div>
+            <div class="feat-card" data-go="risk">
+              <div class="feat-ico">◈</div>
+              <h3>Customer Risk Scoring</h3>
+              <p>Stack risk factors and see how risk-based approach translates into scores.</p>
+            </div>
+            <div class="feat-card" data-go="sar">
+              <div class="feat-ico">✎</div>
+              <h3>SAR / STR Drafting</h3>
+              <p>Draft internal escalation notes and compare against a model answer.</p>
+            </div>
+            <div class="feat-card" data-go="sql">
+              <div class="feat-ico">⌘</div>
+              <h3>SQL for AML</h3>
+              <p>Translate typologies like structuring and dormant reactivation into queries.</p>
+            </div>
+            <div class="feat-card" data-go="redflags">
+              <div class="feat-ico">⚑</div>
+              <h3>Red Flag Library</h3>
+              <p>Searchable reference across CDD, TM, sanctions, TBML, PEPs, shell companies.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-banner">
+          <b>Educational use only.</b> All customers, transactions, and alerts in this app
+          are fictional. Nothing here constitutes real compliance advice. Do not paste
+          real customer or transaction data into this tool.
+        </div>
+      </section>
+
+      <!-- ========== DASHBOARD ========== -->
+      <section class="view" id="view-dashboard">
+        <div class="page-head">
+          <div>
+            <h1>Dashboard</h1>
+            <p class="muted">Your progress is stored locally in this browser.</p>
+          </div>
+          <button class="btn ghost small" id="resetProgress">Reset progress</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Cases completed</div>
+            <div class="stat-value" id="stat-cases">0</div>
+            <div class="stat-foot" id="stat-cases-foot">Across KYC, TM, SAR</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Average score</div>
+            <div class="stat-value" id="stat-avg">—</div>
+            <div class="stat-foot">0 / 100 scale</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">High-risk cases identified</div>
+            <div class="stat-value" id="stat-highrisk">0</div>
+            <div class="stat-foot">Correctly rated High or Critical</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">SQL exercises attempted</div>
+            <div class="stat-value" id="stat-sql">0</div>
+            <div class="stat-foot">Of 8 challenges</div>
+          </div>
+        </div>
+
+        <h2 class="section-h2">Badges</h2>
+        <div class="badges" id="badges"></div>
+
+        <h2 class="section-h2">Continue practicing</h2>
+        <div class="grid">
+          <div class="dash-card" data-go="kyc">
+            <h3>KYC Case Review</h3>
+            <p>Review fictional customer files and decide risk.</p>
+            <div class="dash-progress"><div class="bar"><div class="bar-fill" id="pg-kyc"></div></div><span id="pg-kyc-text">0 / 0</span></div>
+          </div>
+          <div class="dash-card" data-go="tm">
+            <h3>Transaction Monitoring</h3>
+            <p>Work AML alerts and decide escalation.</p>
+            <div class="dash-progress"><div class="bar"><div class="bar-fill" id="pg-tm"></div></div><span id="pg-tm-text">0 / 0</span></div>
+          </div>
+          <div class="dash-card" data-go="sar">
+            <h3>SAR / STR Drafting</h3>
+            <p>Write internal escalation notes.</p>
+            <div class="dash-progress"><div class="bar"><div class="bar-fill" id="pg-sar"></div></div><span id="pg-sar-text">0 / 0</span></div>
+          </div>
+          <div class="dash-card" data-go="sql">
+            <h3>SQL for AML</h3>
+            <p>Translate AML logic into queries.</p>
+            <div class="dash-progress"><div class="bar"><div class="bar-fill" id="pg-sql"></div></div><span id="pg-sql-text">0 / 0</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== KYC CASE REVIEW ========== -->
+      <section class="view" id="view-kyc">
+        <div class="page-head">
+          <div>
+            <h1>KYC Case Review</h1>
+            <p class="muted">Review the file. Decide risk rating, red flags, missing documents, and next action.</p>
+          </div>
+          <div class="case-nav">
+            <button class="btn ghost small" id="kycPrev">← Previous</button>
+            <span class="case-counter" id="kycCounter">Case 1 of 6</span>
+            <button class="btn ghost small" id="kycNext">Next →</button>
+          </div>
+        </div>
+        <div id="kycContainer"></div>
+      </section>
+
+      <!-- ========== TRANSACTION MONITORING ========== -->
+      <section class="view" id="view-tm">
+        <div class="page-head">
+          <div>
+            <h1>Transaction Monitoring</h1>
+            <p class="muted">Triage alerts. Decide if they are suspicious, identify the typology, and escalate or close.</p>
+          </div>
+          <div class="case-nav">
+            <button class="btn ghost small" id="tmPrev">← Previous</button>
+            <span class="case-counter" id="tmCounter">Alert 1 of 6</span>
+            <button class="btn ghost small" id="tmNext">Next →</button>
+          </div>
+        </div>
+        <div id="tmContainer"></div>
+      </section>
+
+      <!-- ========== RISK SCORING ENGINE ========== -->
+      <section class="view" id="view-risk">
+        <div class="page-head">
+          <div>
+            <h1>Risk Scoring Engine</h1>
+            <p class="muted">Tick the factors that apply. Watch the risk level change and read the suggested action.</p>
+          </div>
+        </div>
+
+        <div class="risk-wrap">
+          <div class="risk-factors card" id="riskFactors"></div>
+
+          <div class="risk-readout card">
+            <div class="risk-score-head">
+              <div class="risk-score-label">Total risk score</div>
+              <div class="risk-score-value" id="riskScore">0</div>
+            </div>
+            <div class="risk-band" id="riskBand">Low</div>
+            <div class="risk-bar"><div class="risk-bar-fill" id="riskBarFill"></div></div>
+            <div class="risk-explain" id="riskExplain">
+              Select factors on the left to see the risk level change.
+            </div>
+            <div class="risk-action-head">Suggested CDD / EDD action</div>
+            <div class="risk-action" id="riskAction">
+              Apply standard CDD measures.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SAR / STR NOTES ========== -->
+      <section class="view" id="view-sar">
+        <div class="page-head">
+          <div>
+            <h1>SAR / STR Note Writing</h1>
+            <p class="muted">Read the scenario. Draft an internal escalation note. Then compare to the model answer.</p>
+          </div>
+          <div class="case-nav">
+            <button class="btn ghost small" id="sarPrev">← Previous</button>
+            <span class="case-counter" id="sarCounter">Scenario 1 of 4</span>
+            <button class="btn ghost small" id="sarNext">Next →</button>
+          </div>
+        </div>
+        <div id="sarContainer"></div>
+      </section>
+
+      <!-- ========== RED FLAG LIBRARY ========== -->
+      <section class="view" id="view-redflags">
+        <div class="page-head">
+          <div>
+            <h1>Red Flag Library</h1>
+            <p class="muted">Search and filter common AML red flags across categories.</p>
+          </div>
+        </div>
+
+        <div class="rf-controls">
+          <input type="text" id="rfSearch" placeholder="Search red flags…" class="input" />
+          <div class="rf-filters" id="rfFilters"></div>
+        </div>
+        <div id="rfList" class="rf-list"></div>
+      </section>
+
+      <!-- ========== SQL FOR AML ========== -->
+      <section class="view" id="view-sql">
+        <div class="page-head">
+          <div>
+            <h1>SQL for AML Practice</h1>
+            <p class="muted">Fictional banking schema. Translate typologies into SQL. Read hints before peeking at solutions.</p>
+          </div>
+        </div>
+
+        <div class="sql-schema card">
+          <h3>Schema</h3>
+          <div class="sql-schema-grid">
+            <div>
+              <div class="mono small muted">customers</div>
+              <pre class="code">customer_id      INT PRIMARY KEY
+full_name        TEXT
+country          TEXT
+occupation       TEXT
+expected_turnover NUMERIC
+pep_flag         BOOLEAN
+account_open_dt  DATE
+phone            TEXT
+address          TEXT
+status           TEXT    -- active, dormant
+dormant_since    DATE</pre>
+            </div>
+            <div>
+              <div class="mono small muted">transactions</div>
+              <pre class="code">txn_id           INT PRIMARY KEY
+customer_id      INT
+txn_date         TIMESTAMP
+amount           NUMERIC
+currency         TEXT
+direction        TEXT   -- in, out
+channel          TEXT   -- cash, wire, card
+counterparty     TEXT
+counterparty_ctry TEXT</pre>
+            </div>
+          </div>
+        </div>
+
+        <div id="sqlList"></div>
+      </section>
+
+      <!-- ========== ABOUT / DISCLAIMER ========== -->
+      <section class="view" id="view-about">
+        <div class="page-head">
+          <div>
+            <h1>About FinCrime Simulator</h1>
+            <p class="muted">Built to give aspiring compliance professionals a realistic AML/KYC practice surface.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>Why this exists</h3>
+            <p>
+              Aspiring AML/KYC analysts, CAMS candidates, and law/finance
+              students rarely get access to real bank compliance platforms
+              before their first role. That gap makes interviews and the
+              first 90 days harder than they need to be.
+            </p>
+            <p>
+              FinCrime Simulator gives you a safe space to reason through
+              CDD files, triage alerts, assign risk ratings, write
+              escalation notes, and translate typologies into SQL, all
+              using fictional scenarios built in the shape of real work.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>What it is not</h3>
+            <ul>
+              <li>Not a real AML / KYC system</li>
+              <li>Not connected to any live sanctions or PEP list</li>
+              <li>Not a substitute for official CAMS / ICA training</li>
+              <li>Not legal, regulatory, or compliance advice</li>
+            </ul>
+            <p class="muted small">
+              All customers, transactions, jurisdictions, and companies in
+              this app are fictional. Any resemblance to a real person or
+              entity is unintended.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Concepts covered</h3>
+            <p class="chips-row">
+              <span class="chip">CDD</span><span class="chip">EDD</span>
+              <span class="chip">PEP screening</span><span class="chip">Adverse media</span>
+              <span class="chip">Beneficial ownership</span><span class="chip">Source of funds</span>
+              <span class="chip">Source of wealth</span><span class="chip">Sanctions screening</span>
+              <span class="chip">Structuring / smurfing</span><span class="chip">Mule accounts</span>
+              <span class="chip">TBML</span><span class="chip">Shell companies</span>
+              <span class="chip">Dormant reactivation</span><span class="chip">HRJ exposure</span>
+              <span class="chip">Risk-based approach</span>
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Data handling</h3>
+            <p>
+              No data leaves your browser. Your progress is stored in
+              <span class="mono">localStorage</span> and you can wipe it from
+              the dashboard at any time.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Backdrop for mobile drawer -->
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- Toast for badge unlocks and feedback -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
